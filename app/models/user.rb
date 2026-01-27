@@ -13,9 +13,11 @@
 #  registered_at :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  deleted_at    :datetime
 #
 class User < ApplicationRecord
   audited
+  include Users::ScheduleDeletionConcern
 
   # Constant
   GENDERS = %w(male female other)
@@ -28,6 +30,9 @@ class User < ApplicationRecord
 
   # Scope
   default_scope { order(registered_at: :desc) }
+
+  # Callback
+  before_create :set_uuid
 
   # Instance method
   def profile_html

@@ -8,6 +8,7 @@ require_relative "need_for_help"
 require_relative "user"
 require_relative "category"
 require_relative "form"
+require_relative "delete_reason"
 require_relative "visit"
 require_relative "survey"
 
@@ -19,6 +20,7 @@ module Samples
       ::Samples::User.load
       ::Samples::Category.load
       ::Samples::Form.load
+      ::Samples::DeleteReason.load
     end
 
     def self.export
