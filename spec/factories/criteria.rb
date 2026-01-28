@@ -14,5 +14,9 @@
 #
 FactoryBot.define do
   factory :criterium do
+    question_id { 1 }
+    question_code { "Q001" }
+    operator { "=" }
+    response_value { "Yes" }
   end
 end

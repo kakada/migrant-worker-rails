@@ -14,14 +14,14 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         request.headers["Authorization"] = "Token #{api_key.access_token}"
       end
 
-      it "create a new user" do
-        expect { post :create, { params: attributes } }.to change(User, :count).by(1)
+      it "creates a new user" do
+        expect { post :create, params: attributes }.to change(User, :count).by(1)
       end
     end
 
     context "fail" do
       it "do not create a new user" do
-        expect { post :create, { params: attributes } }.to change(User, :count).by(0)
+        expect { post :create, params: attributes }.to change(User, :count).by(0)
       end
     end
   end

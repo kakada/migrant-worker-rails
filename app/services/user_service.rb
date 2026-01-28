@@ -13,7 +13,9 @@ class UserService
     create_sheet_user(book)
     create_sheet_games(book)
 
-    file_path = [Rails.root, "public", "uploads", "tmp", "users.xls"].join("/")
+    file_path = Rails.root.join("public", "uploads", "tmp", "users.xls")
+    FileUtils.mkdir_p(file_path.dirname) # ensure parent directory exists
+
     book.write(file_path)
     File.read(file_path)
   end

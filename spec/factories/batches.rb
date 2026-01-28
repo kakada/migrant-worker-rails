@@ -18,5 +18,13 @@
 #
 FactoryBot.define do
   factory :batch do
+    code { "BATCH001" }
+    total_count { 100 }
+    valid_count { 90 }
+    new_count { 80 }
+    province_count { 70 }
+    reference { "Initial batch upload" }
+    creator_id { 1 }
+    type { "UserBatch" }
   end
 end
