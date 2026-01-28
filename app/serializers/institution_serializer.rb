@@ -25,10 +25,10 @@ class InstitutionSerializer < ActiveModel::Serializer
   has_many :country_institutions
 
   def logo_url
-    return object.logo_url if object.logo.present?
+    object.logo_url if object.logo.present?
   end
 
   def audio_url
-    return object.audio_url if object.audio.present?
+    object.audio_url if object.audio.present?
   end
 end

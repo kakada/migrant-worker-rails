@@ -13,5 +13,8 @@
 #
 FactoryBot.define do
   factory :tag do
+    name { "Sample Tag" }
+    taggings_count { 0 }
+    display_order { 1 }
   end
 end

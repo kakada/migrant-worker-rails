@@ -22,10 +22,10 @@ class SurveyFormSerializer < ActiveModel::Serializer
   has_many :sections
 
   def image_url
-    return object.image_url if object.image.present?
+    object.image_url if object.image.present?
   end
 
   def audio_url
-    return object.audio_url if object.audio.present?
+    object.audio_url if object.audio.present?
   end
 end

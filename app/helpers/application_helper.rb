@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def css_active_class(controller_name, *other)
-    return "active" if params[:controller] == controller_name || other.include?(params[:controller])
+    "active" if params[:controller] == controller_name || other.include?(params[:controller])
   end
 
   def pagy_label(pagy)

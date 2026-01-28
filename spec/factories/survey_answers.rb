@@ -18,5 +18,13 @@
 #
 FactoryBot.define do
   factory :survey_answer do
+    uuid { SecureRandom.uuid }
+    question_id { 1 }
+    question_code { "Q001" }
+    value { "Sample answer" }
+    score { 10 }
+    user_uuid { SecureRandom.uuid }
+    survey_uuid { SecureRandom.uuid }
+    voice { "Sample voice data" }
   end
 end

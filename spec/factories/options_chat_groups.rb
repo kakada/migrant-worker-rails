@@ -12,5 +12,7 @@
 #
 FactoryBot.define do
   factory :options_chat_group do
+    option_id { 1 }
+    chat_group_id { SecureRandom.uuid }
   end
 end

@@ -48,7 +48,7 @@ class QuestionSerializer < ActiveModel::Serializer
                :warning, :recursive, :question_id, :image_url
 
     def image_url
-      return object.image_url if object.image.present?
+      object.image_url if object.image.present?
     end
   end
 end

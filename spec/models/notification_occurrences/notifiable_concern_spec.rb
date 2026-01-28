@@ -40,16 +40,9 @@ RSpec.describe NotificationOccurrences::NotifiableConcern, type: :model do
     let!(:notification_occurrence) { create(:notification_occurrence, success_count: 0, failure_count: 0, token_count: 0) }
     let!(:registered_token) { create(:registered_token) }
 
-    before {
-      notification_occurrence.notify_all_token_async
-    }
-
-    it "updates notification_occurrence token_count" do
-      expect(notification_occurrence.token_count).to eq(1)
-    end
-
-    it "add job to sidekiq" do
-      expect(PushNotificationJob.jobs.size).to eq(1)
+    it "enqueues one push job and updates token_count" do
+      expect { notification_occurrence.notify_all_token_async }.to change { PushNotificationJob.jobs.size }.by(1)
+      expect(notification_occurrence.reload.token_count).to eq(1)
     end
   end
 

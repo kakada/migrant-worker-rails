@@ -13,5 +13,7 @@
 #
 FactoryBot.define do
   factory :importing_item do
+    itemable { nil }
+    batch { nil }
   end
 end

@@ -13,5 +13,8 @@
 #
 FactoryBot.define do
   factory :section do
+    name { "Personal Information" }
+    form_id { 1 }
+    display_order { 1 }
   end
 end

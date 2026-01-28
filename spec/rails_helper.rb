@@ -9,6 +9,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 require "support/factory_bot"
 require "sidekiq/testing"
+require "database_cleaner" # <- make sure this line exists
+require "ostruct"
+
+# Ensure Sidekiq jobs are captured in the test queue
+Sidekiq::Testing.fake!
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -91,7 +96,12 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.after { Telegram.bot.reset }
+  # Clear any enqueued Sidekiq jobs between examples
+  config.before(:each) do
+    Sidekiq::Worker.clear_all
+  end
+
+  # config.after { Telegram.bot.reset }
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -116,6 +126,8 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+require "shoulda/matchers" # <- make sure this line exists
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

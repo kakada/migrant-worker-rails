@@ -34,18 +34,18 @@ class CategorySerializer < ActiveModel::Serializer
   end
 
   def image_url
-    return object.image_url if object.image.present?
+    object.image_url if object.image.present?
   end
 
   def audio_url
-    return object.audio_url if object.audio.present?
+    object.audio_url if object.audio.present?
   end
 
   def hint_audio_url
-    return object.hint_audio_url if object.hint_audio.present?
+    object.hint_audio_url if object.hint_audio.present?
   end
 
   def hint_image_url
-    return object.hint_image_url if object.hint_image.present?
+    object.hint_image_url if object.hint_image.present?
   end
 end
