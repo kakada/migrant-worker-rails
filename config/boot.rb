@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Load Logger before Rails to prevent NameError in Ruby 3.1+
+require "logger"
+
 require "yaml"
 require "erb"
 
