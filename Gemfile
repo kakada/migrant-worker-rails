@@ -89,7 +89,7 @@ gem "rack-cors", "~> 2.0.1"
 gem "paranoia", "~> 2.6.2"
 
 # Client request
-gem "httparty", "~> 0.21.0"
+gem "httparty", "~> 0.24.0"
 
 # Recaptcha
 gem "recaptcha", "~> 5.12"
