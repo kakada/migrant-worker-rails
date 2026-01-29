@@ -24,3 +24,25 @@ km:
     any_gender: គ្រប់យេនឌ័រ
     age_range: អាយុចាប់ពី start_age ដល់ end_age
     genders_selected: ភេទត្រូវបានជ្រើសរើស
+    deletions:
+      title: លុបគណនីរបស់ខ្ញុំ / Delete My Account
+      description: សូមបញ្ចូលលេខសម្គាល់អ្នកប្រើប្រាស់របស់អ្នក និងជ្រើសរើសមូលហេតុសម្រាប់លុបគណនីរបស់អ្នក។<br/>Please enter your user ID and select a reason for deleting your account.
+      user_uuid: លេខសម្គាល់អ្នកប្រើប្រាស់ / User ID
+      uuid_placeholder: បញ្ចូលលេខសម្គាល់អ្នកប្រើប្រាស់របស់អ្នក
+      reason: មូលហេតុសម្រាប់លុប / Reason for deletion
+      select_reason: ជ្រើសរើសមូលហេតុ
+      submit: លុបគណនីរបស់ខ្ញុំ / Delete My Account
+      note: "<strong>***</strong> គណនីរបស់អ្នកនឹងត្រូវបានកំណត់ពេលសម្រាប់លុប។ ទិន្នន័យនឹងត្រូវបានលុបចោលជាអចិន្ត្រៃយ៍បន្ទាប់ពី ៩០ ថ្ងៃ។<br/>Your account will be scheduled for deletion. The data will be permanently removed after 90 days."
+      user_not_found: នេះមិនមាននៅក្នុងប្រព័ន្ធ / User not found with the provided ID
+      success: គណនីរបស់អ្នកត្រូវបានកំណត់ពេលសម្រាប់លុបដោយជោគជ័យ។ / Your account has been successfully scheduled for deletion
+      failed: លុបគណនីមិនបានជោគជ័យ សូមព្យាយាមម្តងទៀត។ / Failed to delete account. Please try again.
+      recaptcha_failed: ការផ្ទៀងផ្ទាត់ Recaptcha មិនបានជោគជ័យ សូមព្យាយាមម្តងទៀត។ / Recaptcha verification failed. Please try again.
+      show:
+        title: ការស្នើសុំដើម្បីលុបគណនី<br/> Account Deletion Requested
+        thank_you: យើងសោកស្តាយដែលបានឃើញអ្នកចាកចេញពីកម្មវិធី។ ការស្នើសុំដើម្បីលុបគណនីរបស់អ្នកត្រូវបានទទួល។ /<br/> We're sorry to see you go. Your request to delete your account has been received.
+        info_to_schedule_for_deleting: គណនីរបស់អ្នកឥឡូវត្រូវបានកំណត់ពេលសម្រាប់លុប ហើយនឹងត្រូវបានលុបចោលជាអចិន្ត្រៃយ៍បន្ទាប់ពី ៩០ ថ្ងៃ។ /<br/> Your account is now scheduled for deletion and will be permanently removed after 90 days.
+
+  activerecord:
+    attributes:
+      user:
+        uuid: "User ID"

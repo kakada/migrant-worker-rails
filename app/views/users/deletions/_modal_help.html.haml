@@ -1,0 +1,14 @@
+/ Help Modal: Where to find the User ID
+#uuidHelpModal.modal.fade{ tabindex: "-1", role: "dialog", aria: { labelledby: "uuidHelpModalLabel", hidden: "true" } }
+  .modal-dialog.modal-dialog-centered{ role: "document" }
+    .modal-content
+      .modal-header
+        %h5.modal-title#uuidHelpModalLabel= t("users.deletions.uuid_help_title", default: "Where to find your User ID")
+        %button.close{ type: "button", data: { dismiss: "modal" }, aria: { label: "Close" } }
+          %span{ aria: { hidden: "true" } } &times;
+      .modal-body
+        -# Todo: will update the description again when app screenshots are ready
+        %p= t("users.deletions.uuid_help_body", default: "You can find your User ID in the app: Profile → Settings → About → User ID.")
+
+      .modal-footer
+        %button.btn.btn-secondary{ type: "button", data: { dismiss: "modal" } }= t("close", default: "Close")

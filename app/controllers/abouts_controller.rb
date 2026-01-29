@@ -9,6 +9,6 @@ class AboutsController < ApplicationController
 
   private
     def set_layout
-      signed_in? ? "layouts/application" : "layouts/sidebar-less"
+      signed_in? ? "layouts/application" : "layouts/sidebar_less"
     end
 end

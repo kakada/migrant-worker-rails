@@ -11,6 +11,8 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 
+//= require lottie.min
+
 // *** layout sb-admin
 //= require sb-admin-2
 
@@ -75,6 +77,7 @@
 //= require survey_form
 //= require telegram_bot
 //= require users/index
+//= require deletions/show
 
 $(document).on("ready turbolinks:load", () => {
   MW.Common.Topbar.init();
@@ -92,4 +95,3 @@ $(document).on("ready turbolinks:load", () => {
   let currentPage = MW.Util.getCurrentPage();
   !!MW[currentPage] && MW[currentPage].init();
 });
-

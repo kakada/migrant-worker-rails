@@ -13,6 +13,16 @@ module Api
         end
       end
 
+      def destroy
+        user = User.find_by!(uuid: params[:id])
+
+        if user.destroy_with_reason(params[:delete_reason_id])
+          render json: { message: "User deleted successfully" }, status: :ok
+        else
+          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
         def user_params
           param = params.require(:user).permit(:uuid, :full_name, :sex, :age, :registered_at)

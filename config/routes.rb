@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :users do
+    resources :deletions, only: [:new, :create, :index, :show]
+  end
+
   resources :users do
     get :download, on: :collection
 
@@ -112,7 +116,7 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
-      resources :users, only: [:create]
+      resources :users, only: [:create, :destroy]
 
       resources :countries, only: [:index] do
         resources :institutions, only: [:index]
@@ -135,6 +139,7 @@ Rails.application.routes.draw do
       resources :videos, only: [:index]
       resources :survey_forms, only: [:show]
       resources :visits, only: [:create]
+      resources :delete_reasons, only: [:index]
     end
   end
 

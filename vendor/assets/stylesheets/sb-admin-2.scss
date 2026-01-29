@@ -11232,3 +11232,22 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+// Custom styles
+.badge-outline-primary {
+  color: $primary;
+  border: 1px solid $primary;
+  background-color: transparent;
+}
+
+.badge-outline-success {
+  color: $success;
+  border: 1px solid $success;
+  background-color: transparent;
+}
+
+.badge-outline-danger {
+  color: $danger;
+  border: 1px solid $danger;
+  background-color: transparent;
+}

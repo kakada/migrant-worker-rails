@@ -1,0 +1,10 @@
+.container.py-5
+  .row.justify-content-center
+    .col-md-8.text-center
+      #doneAnimation{data: {icon_url: asset_path('done.json')}}
+
+      %h3.mb-0= t("users.deletions.show.title").html_safe
+      %hr.my-4.horizontal-line
+
+      %p= t("users.deletions.show.thank_you").html_safe
+      %p= t("users.deletions.show.info_to_schedule_for_deleting", removing_interval: User::REMOVING_INTERVAL).html_safe
