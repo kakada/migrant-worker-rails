@@ -139,6 +139,7 @@ GEM
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
     crass (1.0.6)
+    csv (3.3.5)
     database_cleaner (1.8.5)
     database_cleaner-active_record (1.8.0)
       activerecord
@@ -198,7 +199,8 @@ GEM
     hashie (5.1.0)
       logger
     htmlentities (4.4.2)
-    httparty (0.21.0)
+    httparty (0.24.0)
+      csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     httpclient (2.9.0)
@@ -554,7 +556,7 @@ DEPENDENCIES
   ffaker (~> 2.14.0)
   googleauth (= 1.7.0)
   haml-rails (~> 2.0)
-  httparty (~> 0.21.0)
+  httparty (~> 0.24.0)
   ipaddress (~> 0.8.3)
   jbuilder (~> 2.7)
   jquery-fileupload-rails (~> 1.0.0)
