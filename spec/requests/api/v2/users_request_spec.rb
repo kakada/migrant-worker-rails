@@ -22,6 +22,45 @@ RSpec.describe Api::V2::UsersController, type: :request do
     let!(:user) { create(:user) }
     let!(:delete_reason) { create(:delete_reason) }
 
+    context "when user is not found" do
+      let(:missing_uuid) { SecureRandom.uuid }
+
+      it "returns 404 with a record not found error" do
+        delete "/api/v2/users/#{missing_uuid}", headers: headers, params: { delete_reason_id: delete_reason.id }
+
+        expect(response).to have_http_status(:not_found)
+
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to be_present
+
+        error = json_response["errors"].first
+        expect(error["title"]).to eq("Record Not Found")
+        expect(error["code"]).to eq(404)
+        expect(error["status"]).to eq("404")
+        expect(error["detail"]).to eq("The record identified by #{missing_uuid} could not be found.")
+      end
+
+      it "still returns 404 when delete_reason_id is in the query string" do
+        delete "/api/v2/users/#{missing_uuid}?delete_reason_id=#{delete_reason.id}", headers: headers
+
+        expect(response).to have_http_status(:not_found)
+
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to be_present
+        expect(json_response["errors"].first["detail"]).to include(missing_uuid)
+      end
+
+      it "returns 404 when delete_reason_id is appended with '&' (legacy/malformed URL)" do
+        delete "/api/v2/users/#{missing_uuid}&delete_reason_id=#{delete_reason.id}", headers: headers
+
+        expect(response).to have_http_status(:not_found)
+
+        json_response = JSON.parse(response.body)
+        expect(json_response["errors"]).to be_present
+        expect(json_response["errors"].first["detail"]).to include(missing_uuid)
+      end
+    end
+
     context "with valid delete_reason_id" do
       it "soft deletes the user" do
         expect {
