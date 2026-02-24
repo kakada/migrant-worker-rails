@@ -1,44 +1,60 @@
-FROM ruby:2.7.3
+# ---------------------------
+# Builder Stage
+# ---------------------------
+FROM ruby:3.2.10-slim AS builder
 
-LABEL maintainer="Sokly <hengsokly23@gmail.com>"
+RUN apt-get update -qq && apt-get install -y \
+  build-essential libpq-dev curl \
+  && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+  && apt-get install -y nodejs \
+  && npm install -g yarn \
+  && rm -rf /var/lib/apt/lists/*
 
-# Updating nodejs version
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-
-# Install dependencies
-RUN apt-get update && \
-  apt-get install -y nodejs yarn postgresql-client && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN mkdir /app
 WORKDIR /app
 
-# Install gem bundle
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+ENV BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    BUNDLE_WITHOUT=development:test
 
-RUN gem install bundler:2.1.4 && \
-  bundle config set deployment 'true' && \
-  bundle install --jobs 20
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler -v 2.4.19 --no-document && bundle install
 
-# Install the application
-COPY . /app
-
-# Generate version file if available
-RUN if [ -d .git ]; then git describe --always > VERSION; fi
+# Copy the full app including bin/ directory
+COPY . .
 
 # Precompile assets
-RUN bundle exec rake assets:precompile RAILS_ENV=production
-
-ENV RAILS_LOG_TO_STDOUT=true
-ENV RACK_ENV=production
 ENV RAILS_ENV=production
-EXPOSE 80
+RUN bundle exec rails assets:precompile
 
-# Add scripts
+# ---------------------------
+# Final Stage
+# ---------------------------
+FROM ruby:3.2.10-slim
+
+RUN apt-get update -qq && apt-get install -y \
+  libpq5 \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Bundler environment
+ENV BUNDLE_PATH=/usr/local/bundle \
+    GEM_HOME=/usr/local/bundle \
+    GEM_PATH=/usr/local/bundle \
+    BUNDLE_WITHOUT=development:test \
+    RAILS_ENV=production \
+    RACK_ENV=production \
+    RAILS_LOG_TO_STDOUT=true \
+    RAILS_SERVE_STATIC_FILES=true
+
+# Copy gems and app from builder
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder /app /app
+
+# Config
 COPY docker/database.yml /app/config/database.yml
+
+EXPOSE 80
 
 CMD ["bundle", "exec", "puma", "-e", "production", "-b", "tcp://0.0.0.0:80"]
