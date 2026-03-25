@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.10"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 6.1.7", ">= 6.1.7.4"
+gem "rails", "~> 7.0.10"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
@@ -40,12 +40,12 @@ gem "pundit",         "~> 2.2.0"
 gem "pagy",           "~> 3.5"
 gem "carrierwave",    "~> 2.2.5"
 
-gem "devise", "~> 4.9.2"
+gem "devise", "~> 5.0.3"
 gem "omniauth-rails_csrf_protection", "~> 1.0.1"
 gem "omniauth-google-oauth2", "~> 1.0.0"
 
 gem "sentry-raven",   "~> 3.0.0"
-gem "awesome_nested_set", "~> 3.4.0"
+gem "awesome_nested_set", "~> 3.9.0"
 gem "active_model_serializers", "~> 0.10.12"
 gem "jquery-fileupload-rails", "~> 1.0.0"
 
@@ -73,7 +73,7 @@ gem "momentjs-rails", "~> 2.29.4.1"
 gem "bootstrap4-datetime-picker-rails", "~> 0.3.1"
 
 # Telegram
-gem "telegram-bot", "~> 0.15.7"
+gem "telegram-bot", "~> 0.16.7"
 gem "ipaddress", "~> 0.8.3"
 
 # Daterange picker
@@ -111,7 +111,7 @@ group :development do
   gem "listen", "~> 3.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem "spring"
-  gem "annotate", "~> 3.1.0"
+  gem "annotate", "~> 3.2.0"
   gem "rubocop-rails"
   gem "rubocop-performance"
 end
