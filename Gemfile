@@ -40,7 +40,7 @@ gem "pundit",         "~> 2.2.0"
 gem "pagy",           "~> 3.5"
 gem "carrierwave",    "~> 2.2.5"
 
-gem "devise", "~> 5.0.3"
+gem "devise", "~> 5.0.4"
 gem "omniauth-rails_csrf_protection", "~> 1.0.1"
 gem "omniauth-google-oauth2", "~> 1.0.0"
 
