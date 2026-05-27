@@ -38,7 +38,7 @@ gem "coffee-rails",   "~> 5.0.0"
 gem "simple_form",    "~> 5.1.0"
 gem "pundit",         "~> 2.2.0"
 gem "pagy",           "~> 3.5"
-gem "carrierwave",    "~> 2.2.5"
+gem "carrierwave",    "~> 2.2.7"
 
 gem "devise", "~> 5.0.3"
 gem "omniauth-rails_csrf_protection", "~> 1.0.1"
